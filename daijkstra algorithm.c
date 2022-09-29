@@ -35,6 +35,22 @@ int main()
         }
     }
 
+    printf("<----------RESULT---------->\n") ;
+    printf("****************************\n") ;
+    printf("*  NODE   : 1  2  3  4  5  *\n") ;
+    printf("*  WEIGHT : ") ;
+    for(i=1;i<6;i++)
+    {
+        printf("%d  ", nodes[0][i]) ;
+    }
+    printf("*\n*  BIA    : ") ;
+    for(i=1;i<6;i++)
+    {
+        printf("%d  ", bia_node[i]) ;
+    }
+    printf("*\n****************************") ;
+
+
     return 0 ;
 }
 
@@ -62,7 +78,7 @@ int min_node(int node, int visited[])
 // 각 과정별 결과 출력
 void result(int i, int node, int bia_node[], int visited[])
 {
-    int j ;
+    int j, visited_node=0 ;
 
     printf("STEP %d  : ", i+1) ;
     for(j=0;j<6;j++)
@@ -86,6 +102,16 @@ void result(int i, int node, int bia_node[], int visited[])
     {
         printf("%d ", visited[j]) ;
     }
-    printf("\nNODE    : %d\n", node) ;
+    for(j=0;j<6;j++)
+    {
+        if(visited[i]==1)
+        {
+            visited_node++ ;
+        }
+    }
+    if(visited_node!=6)
+    {
+        printf("\nNODE    : %d", node) ;
+    }
     printf("\n\n") ;
 }
