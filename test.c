@@ -4,6 +4,7 @@
 void result(int a[])
 {
     printf("%d", a[0]) ;
+    a[0]++ ;
 }
 
 int main()
@@ -22,4 +23,5 @@ int main()
 
 
     result(array) ;
+    printf("%d", array[0]);
 }

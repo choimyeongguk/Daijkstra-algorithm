@@ -11,14 +11,12 @@ int nodes[6][6] =
         {INF, INF, INF, 4, 3, 0}  // 5
     } ;
 
-int min_nodes(int nodes_num, int node, int nodes[], int visited[]) ;
+int min_node(int node, int visited[]) ;
 void result(int i, int bia_node[], int visited[]) ;
 
 int main()
 {
     int i, j, node=0 ;
-    const int node_num = 6 ;
-
     int bia_node[6] = {0} ;  // 각 노드별 최소 경로의 직전 노드
     int visited[6] = {0} ;  // 확인한 노드
 
@@ -26,7 +24,7 @@ int main()
     {
         result(i, bia_node, visited) ;
 
-        node = min_nodes(node_num, &node, visited) ;
+        node = min_node(node, visited) ;
 
         for(j=0;j<6;j++)
         {
@@ -40,24 +38,24 @@ int main()
 }
 
 // 확인하지 않은 노드 중 최소경로 노드 반환
-int min_nodes(int nodes_num, int node, int visited[])
+int min_node(int node, int visited[])
 {
-    int i, min_node, min=INF ;
+    int i, node_bf, min=INF ;
     visited[node] = 1 ;
 
-    for(i=0;i<nodes_num;i++)
+    for(i=0;i<6;i++)
     {
         if(visited[i]==0)
         {
-            if(nodes[i]<min)
+            if(nodes[node][i]<min)
             {
-                min_node = i ;
+                node_bf = i ;
                 min = nodes ;
             }
         }
     }
 
-    return min_node ;
+    return node_bf ;
 }
 
 // 각 과정별 결과 출력
@@ -80,12 +78,13 @@ void result(int i, int bia_node[], int visited[])
     printf("\nBIA     : ") ;
     for(j=0;j<6;j++)
     {
-        printf("%d ", bia_node[j]) ;
+        printf("%d ", bia_node[j]+1) ;
     }
     printf("\nVISITED : ") ;
     for(j=0;j<6;j++)
     {
         printf("%d ", visited[j]) ;
     }
+    printf("\n\n") ;
 }
 
